@@ -1,4 +1,4 @@
-name:  mongo-sharding
+name: mongo-sharding
 services:
 
   #  сервер конфигурации
@@ -13,6 +13,7 @@ services:
         ipv4_address: 173.17.0.10
     volumes:
       - config-data:/data/db
+      - ./scripts/mongo-config-init.sh:/docker-entrypoint-initdb.d/mongo-config-init.sh
     command:
       [
         "--configsvr",  # запуск в режиме конфигурации
@@ -37,10 +38,11 @@ services:
     networks:
       app-network:
         ipv4_address: 173.17.0.9
-    volumes:
-      - shard1-data:/data/db
+#    volumes:
+#      - shard1-data:/data/db
+#      - ./scripts/mongo-shard1-init.sh:/docker-entrypoint-initdb.d/mongo-shard1-init.sh
     depends_on:
-      - router1
+#      - router1
       - configSrv
     command:
       [
@@ -67,7 +69,8 @@ services:
       app-network:
         ipv4_address: 173.17.0.8
     volumes:
-      - shard2-data:/data/db
+#      - shard2-data:/data/db
+      - ./scripts/mongo-shard2-init.sh:/docker-entrypoint-initdb.d/mongo-shard2-init.sh
     depends_on:
       - router2
       - configSrv
@@ -95,6 +98,8 @@ services:
     networks:
       app-network:
         ipv4_address: 173.17.0.7
+    volumes:
+      - ./scripts/mongo-router-init.sh:/docker-entrypoint-initdb.d/mongo-router-init.sh
     command:
       [
         "mongos",   #обычная mongo в режиме роутера
@@ -119,6 +124,8 @@ services:
     networks:
       app-network:
         ipv4_address: 173.17.0.6
+    volumes:
+      - ./scripts/mongo-router-init.sh:/docker-entrypoint-initdb.d/mongo-router-init.sh
     command:
       [
         "mongos",   #обычная mongo в режиме роутера
