@@ -252,6 +252,86 @@ services:
       test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
       interval: 5s
       start_period: 10s
+  
+  redis1:
+    image: "redis:latest"
+    container_name: redis1
+    ports:
+      - "6379"
+    volumes:
+      - redis1_data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    networks:
+      app-network:
+        ipv4_address: 173.17.0.18
+
+  redis2:
+    image: "redis:latest"
+    container_name: redis2
+    ports:
+      - "6379"
+    volumes:
+      - redis2_data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    networks:
+      app-network:
+        ipv4_address: 173.17.0.19
+
+  redis3:
+    image: "redis:latest"
+    container_name: redis3
+    ports:
+      - "6379"
+    volumes:
+      - redis3_data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    networks:
+      app-network:
+        ipv4_address: 173.17.0.20
+
+  redis4:
+    image: "redis:latest"
+    container_name: redis4
+    ports:
+      - "6379"
+    volumes:
+      - redis4_data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    networks:
+      app-network:
+        ipv4_address: 173.17.0.21
+
+  redis5:
+    image: "redis:latest"
+    container_name: redis5
+    ports:
+      - "6379"
+    volumes:
+      - redis5_data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    networks:
+      app-network:
+        ipv4_address: 173.17.0.22
+
+  redis6:
+    image: "redis:latest"
+    container_name: redis6
+    ports:
+      - "6379"
+    volumes:
+      - redis6_data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+    networks:
+      app-network:
+        ipv4_address: 173.17.0.23
+
+
 networks:
   app-network:
     driver: bridge
@@ -268,4 +348,10 @@ volumes:
   shard2_replica1-data:
   shard2_replica2-data:
   shard2_replica3-data:
+  redis1_data: { }
+  redis2_data: { }
+  redis3_data: { }
+  redis4_data: { }
+  redis5_data: { }
+  redis6_data: { }
 
