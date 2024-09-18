@@ -86,3 +86,7 @@ use somedb
 for(var i = 0; i < 1000; i++) db.helloDoc.insert({age:i, name:"ly"+i})
 db.helloDoc.countDocuments()
 EOF
+
+docker compose exec -T redis1 bash <<EOF
+echo "yes" | redis-cli --cluster create   173.17.0.18:6379   173.17.0.19:6379   173.17.0.20:6379   173.17.0.21:6379   173.17.0.22:6379   173.17.0.23:6379   --cluster-replicas 1
+EOF

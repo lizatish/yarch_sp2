@@ -8,7 +8,7 @@
 shell.sh. Вместо ручной настройки можно запустить его командами:
 
 ```shell
-sudo chmod u+x shell.sh
+sudo chmod u+x scripts/shell.sh
 ./shell.sh
 ```
 
