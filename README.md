@@ -1,5 +1,14 @@
 # pymongo-api
 
+## Схема:
+
+![img.png](img.png)
+
+Общая ссылка на реализацию всех заданий в drawio:
+https://drive.google.com/file/d/1-CeA4IoThnnaEAapctkDeGUhuqF4WrZj/view?usp=sharing
+
+Каждое задание (1-6) пронумеровано во вкладке снизу
+
 ## Как запустить
 
 Запускаем mongodb и приложение
