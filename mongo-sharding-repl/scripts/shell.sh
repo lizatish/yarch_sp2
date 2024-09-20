@@ -60,7 +60,7 @@ sh.addShard( "shard2/shard2_replica1:27017");
 sh.addShard( "shard2/shard2_replica2:27017");
 sh.addShard( "shard2/shard2_replica3:27017");
 sh.enableSharding("somedb");
-sh.shardCollection("somedb.helloDoc", { "name" : "hashed" } )
+sh.shardCollection("somedb.helloDoc", { "name" : "hashed" } );
 EOF
 
 docker compose exec -T router2 mongosh --port 27021 --quiet <<EOF
@@ -71,18 +71,18 @@ sh.addShard( "shard2/shard2_replica1:27017");
 sh.addShard( "shard2/shard2_replica2:27017");
 sh.addShard( "shard2/shard2_replica3:27017");
 sh.enableSharding("somedb");
-sh.shardCollection("somedb.helloDoc", { "name" : "hashed" } )
+sh.shardCollection("somedb.helloDoc", { "name" : "hashed" } );
 EOF
 
 # Проверяем работоспособность: заполняем оба роутера по 1000 документов
 docker compose exec -T router1 mongosh --port 27020 --quiet <<EOF
 use somedb
 for(var i = 0; i < 1000; i++) db.helloDoc.insert({age:i, name:"ly"+i})
-db.helloDoc.countDocuments()
+db.helloDoc.countDocuments();
 EOF
 
 docker compose exec -T router2 mongosh --port 27021 --quiet <<EOF
 use somedb
 for(var i = 0; i < 1000; i++) db.helloDoc.insert({age:i, name:"ly"+i})
-db.helloDoc.countDocuments()
+db.helloDoc.countDocuments();
 EOF
